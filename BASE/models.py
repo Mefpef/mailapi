@@ -20,7 +20,7 @@ class Template(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     subject = models.CharField(max_length=80)
     text = models.TextField(max_length=450)
-    attachment = models.FileField(null=True)
+    attachment = models.FileField(blank=True)
     date = models.DateTimeField(auto_now_add=True)
     last_update = models.DateTimeField(auto_now=True)
 

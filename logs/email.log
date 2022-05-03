@@ -1564,3 +1564,58 @@ INFO 2022-04-28 19:41:10,366 autoreload 17410 139731628455744 /home/matt/Pycharm
 INFO 2022-04-28 19:41:10,654 autoreload 17638 139831116453696 Watching for file changes with StatReloader
 INFO 2022-04-28 19:42:24,057 autoreload 17638 139831116453696 /home/matt/PycharmProjects/mailAPI/BASE/models.py changed, reloading.
 INFO 2022-04-28 19:42:24,380 autoreload 17792 140017129371456 Watching for file changes with StatReloader
+INFO 2022-05-03 17:43:22,243 autoreload 8025 140095296386880 Watching for file changes with StatReloader
+WARNING 2022-05-03 17:43:24,189 log 8025 140095218521856 Not Found: /
+WARNING 2022-05-03 17:43:24,190 basehttp 8025 140095218521856 "GET / HTTP/1.1" 404 2614
+WARNING 2022-05-03 17:43:24,911 log 8025 140095218521856 Not Found: /favicon.ico
+WARNING 2022-05-03 17:43:24,912 basehttp 8025 140095218521856 "GET /favicon.ico HTTP/1.1" 404 2665
+INFO 2022-05-03 17:43:41,788 basehttp 8025 140095218521856 "GET /api/mailbox HTTP/1.1" 301 0
+INFO 2022-05-03 17:43:41,809 views 8025 140095218521856 List of mailboxes load successfully
+INFO 2022-05-03 17:43:41,832 basehttp 8025 140095218521856 "GET /api/mailbox/ HTTP/1.1" 200 7919
+INFO 2022-05-03 17:43:41,864 basehttp 8025 140095210129152 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+INFO 2022-05-03 17:43:41,865 basehttp 8025 140095200425728 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2022-05-03 17:43:41,867 basehttp 8025 140094988089088 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2022-05-03 17:43:41,868 basehttp 8025 140094971303680 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+INFO 2022-05-03 17:43:41,870 basehttp 8025 140095218521856 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2022-05-03 17:43:41,871 basehttp 8025 140094979696384 "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 89476
+INFO 2022-05-03 17:43:41,878 basehttp 8025 140094971303680 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1719
+INFO 2022-05-03 17:43:41,879 basehttp 8025 140095200425728 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2022-05-03 17:43:41,879 basehttp 8025 140095210129152 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2022-05-03 17:43:41,881 basehttp 8025 140094988089088 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2022-05-03 17:43:45,264 basehttp 8025 140094988089088 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2022-05-03 17:43:51,514 views 8025 140094988089088 List of templates load successfully
+INFO 2022-05-03 17:43:51,528 basehttp 8025 140094988089088 "GET /api/templates/ HTTP/1.1" 200 5693
+INFO 2022-05-03 17:45:37,718 autoreload 8025 140095296386880 /home/matt/PycharmProjects/mailAPI/BASE/views.py changed, reloading.
+INFO 2022-05-03 17:45:38,016 autoreload 8324 140545061209920 Watching for file changes with StatReloader
+INFO 2022-05-03 17:45:39,283 views 8324 140544983869184 List of templates load successfully
+INFO 2022-05-03 17:45:39,316 basehttp 8324 140544983869184 "GET /api/templates/ HTTP/1.1" 200 8688
+ERROR 2022-05-03 17:46:24,588 log 8324 140544983869184 Internal Server Error: /api/templates/
+Traceback (most recent call last):
+  File "/home/matt/.local/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/matt/.local/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/matt/.local/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/matt/.local/lib/python3.8/site-packages/django/views/generic/base.py", line 69, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.8/dist-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.8/dist-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.8/dist-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+TypeError: put() missing 1 required positional argument: 'template_id'
+ERROR 2022-05-03 17:46:24,589 basehttp 8324 140544983869184 "PUT /api/templates/ HTTP/1.1" 500 91682
+INFO 2022-05-03 17:46:56,594 autoreload 8324 140545061209920 /home/matt/PycharmProjects/mailAPI/BASE/urls.py changed, reloading.
+INFO 2022-05-03 17:46:56,941 autoreload 8422 140102722594624 Watching for file changes with StatReloader
+INFO 2022-05-03 17:47:00,453 views 8422 140102571390720 List of mailboxes load successfully
+INFO 2022-05-03 17:47:00,477 basehttp 8422 140102571390720 "GET /api/mailbox/ HTTP/1.1" 200 7919
+INFO 2022-05-03 17:47:04,509 views 8422 140102571390720 List of templates load successfully
+INFO 2022-05-03 17:47:04,523 basehttp 8422 140102571390720 "GET /api/templates/ HTTP/1.1" 200 8688
+INFO 2022-05-03 17:47:24,585 views 8422 140102571390720 List of templates load successfully
+INFO 2022-05-03 17:47:24,600 basehttp 8422 140102571390720 "GET /api/templates/ HTTP/1.1" 200 8688
+INFO 2022-05-03 17:47:24,605 autoreload 8422 140102722594624 /home/matt/PycharmProjects/mailAPI/BASE/serializers.py changed, reloading.
+INFO 2022-05-03 17:47:24,935 autoreload 8457 139806916327232 Watching for file changes with StatReloader

@@ -17,7 +17,7 @@ class TemplateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Template
         fields = [
-            'subject', 'text', 'attachment', 'date', 'last_update'
+            'id', 'subject', 'text', 'attachment', 'date', 'last_update'
         ]
 
 
