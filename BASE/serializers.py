@@ -25,5 +25,5 @@ class EmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Email
         fields = [
-            'mailbox', 'template', 'to', 'cc', 'bcc', 'sent_date', 'date'
+            'id', 'mailbox', 'template', 'to', 'cc', 'bcc', 'sent_date', 'date'
         ]

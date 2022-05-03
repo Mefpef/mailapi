@@ -69,6 +69,24 @@ class TemplatesView(APIView):
         logger.info('List of templates load successfully')
         return Response(serializer.data)
 
+    def post(self, request):
+        serializer = TemplateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            logger.info('POST successfully')
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        logger.info(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TemplateView(APIView):
+
+    def get(self, request, templates_id):
+        mailbox = Template.objects.get(id=templates_id)
+        serializer = TemplateSerializer(mailbox)
+        logger.info('Single mailbox loaded successfully')
+        return Response(serializer.data)
+
     def put(self, request, templates_id):
         mailbox = Template.objects.get(id=templates_id)
         serializer = TemplateSerializer(mailbox, data=request.data)
@@ -94,3 +112,21 @@ class TemplatesView(APIView):
         mailbox.delete()
         logger.info('MAILBOX deleted')
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class MailView(APIView):
+
+    def get(self, request):
+        templates = Email.objects.all()
+        serializer = EmailSerializer(templates, many=True)
+        logger.info('List of templates load successfully')
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = EmailSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            logger.info('POST successfully')
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        logger.info(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
