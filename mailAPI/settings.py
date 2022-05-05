@@ -160,9 +160,7 @@ LOGGING = {
     }
 }
 
-CELERY_BROKER_URL = 'redis://:pb513d63c199725f794152a80e2885c6edc5a78da51872e6c28334a5c50ad8abb@ec2-52-209-73-239.eu-west-1.compute.amazonaws.com:27260'
-
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 
 CELERY_ACCEPT_CONTENT = ['json']
-
 CELERY_TASK_SERIALIZER = 'json'
