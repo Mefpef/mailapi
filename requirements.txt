@@ -1,0 +1,5 @@
+celery==5.2.6
+djangorestframework==3.13.1
+Django==4.0
+django-filter==21.1
+redis-server==6.0.9
