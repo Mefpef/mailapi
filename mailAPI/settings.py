@@ -45,12 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFilterBackend',
-        ...
-    ),
-}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -164,3 +159,10 @@ LOGGING = {
         }
     }
 }
+
+CELERY_BROKER_URL = 'redis://:pb513d63c199725f794152a80e2885c6edc5a78da51872e6c28334a5c50ad8abb@ec2-52-209-73-239.eu-west-1.compute.amazonaws.com:27260'
+
+
+CELERY_ACCEPT_CONTENT = ['json']
+
+CELERY_TASK_SERIALIZER = 'json'

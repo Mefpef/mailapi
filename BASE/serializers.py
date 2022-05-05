@@ -9,7 +9,7 @@ class MailboxSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mailbox
         fields = [
-            'id', 'host', 'port', 'login', 'password', 'email_from', 'use_ssl', 'is_active', 'date', 'last_update'
+            'id', 'host', 'port', 'email_from', 'use_ssl', 'is_active', 'date', 'last_update'
         ]
         lookup_field = 'id'
 
