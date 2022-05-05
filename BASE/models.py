@@ -15,6 +15,8 @@ class Mailbox(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     last_update = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.email_from
 
 class Template(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -24,6 +26,8 @@ class Template(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     last_update = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.subject
 
 class Email(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

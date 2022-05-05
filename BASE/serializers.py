@@ -11,6 +11,7 @@ class MailboxSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'host', 'port', 'login', 'password', 'email_from', 'use_ssl', 'is_active', 'date', 'last_update'
         ]
+        lookup_field = 'id'
 
 
 class TemplateSerializer(serializers.ModelSerializer):
@@ -19,6 +20,7 @@ class TemplateSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'subject', 'text', 'attachment', 'date', 'last_update'
         ]
+        lookup_field = 'id'
 
 
 class EmailSerializer(serializers.ModelSerializer):

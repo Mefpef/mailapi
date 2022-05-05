@@ -1,132 +1,91 @@
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import status
+from django_filters import rest_framework as filters
+from rest_framework.generics import ListCreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveAPIView
+from rest_framework.mixins import ListModelMixin
+from .filters import EmailFilter
 from .serializers import MailboxSerializer, EmailSerializer, TemplateSerializer
 from .models import Mailbox, Email, Template
-from .filters import MailboxFilter
 import logging
+
 logger = logging.getLogger('django')
 
 
-class MailboxesView(APIView):
+class MailboxesView(ListCreateAPIView, ListModelMixin):
+    queryset = Mailbox.objects.all()
+    serializer_class = MailboxSerializer
 
-    def get(self, request):
-        mailboxes = Mailbox.objects.all()
-        serializer = MailboxSerializer(mailboxes, many=True)
-        logger.info('List of mailboxes load successfully')
-        return Response(serializer.data)
+    def get(self, request, *args, **kwargs):
+        logger.info('Mailbox displayed')
+        return self.list(request, *args, **kwargs)
 
-    def post(self, request):
-        serializer = MailboxSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            logger.info('POST successfully')
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        logger.info(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        logger.info('Mailbox created')
+        return self.create(request, *args, **kwargs)
 
 
-class MailboxView(APIView):
+class MailboxView(RetrieveAPIView, UpdateAPIView, DestroyAPIView):
+    queryset = Mailbox.objects.all()
+    serializer_class = MailboxSerializer
+    lookup_field = 'id'
 
-    def get(self, request, mailbox_id):
-        mailbox = Mailbox.objects.get(id=mailbox_id)
-        serializer = MailboxSerializer(mailbox)
+    def get(self, request, *args, **kwargs):
         logger.info('Single mailbox loaded successfully')
-        return Response(serializer.data)
+        return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, mailbox_id):
-        mailbox = Mailbox.objects.get(id=mailbox_id)
-        serializer = MailboxSerializer(mailbox, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            logger.info('POST successfully')
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        logger.info(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def put(self, request, *args, **kwargs):
+        logger.info('Updated successfully')
+        return self.update(request, *args, **kwargs)
 
-    def patch(self, request, mailbox_id):
-        mailbox = Mailbox.objects.get(id=mailbox_id)
-        serializer = MailboxSerializer(mailbox, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            logger.info('PATCH successfully')
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        logger.info(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def patch(self, request, *args, **kwargs):
+        logger.info('Partial updated successfully')
+        return self.partial_update(request, *args, **kwargs)
 
-    def delete(self, request, mailbox_id):
-        mailbox = Mailbox.objects.get(id=mailbox_id)
-        mailbox.delete()
+    def delete(self, request, *args, **kwargs):
         logger.info('MAILBOX deleted')
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return self.delete(request, *args, **kwargs)
 
 
-class TemplatesView(APIView):
+class TemplatesView(ListCreateAPIView):
+    queryset = Template.objects.all()
+    serializer_class = TemplateSerializer
 
-    def get(self, request):
-        templates = Template.objects.all()
-        serializer = TemplateSerializer(templates, many=True)
-        logger.info('List of templates load successfully')
-        return Response(serializer.data)
+    def get(self, request, *args, **kwargs):
+        logger.info('Templates displayed')
+        return self.list(request, *args, **kwargs)
 
-    def post(self, request):
-        serializer = TemplateSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            logger.info('POST successfully')
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        logger.info(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        logger.info('Mailbox created')
+        return self.create(request, *args, **kwargs)
 
 
-class TemplateView(APIView):
+class TemplateView(RetrieveAPIView, UpdateAPIView, DestroyAPIView):
+    queryset = Template.objects.all()
+    serializer_class = TemplateSerializer
 
-    def get(self, request, templates_id):
-        mailbox = Template.objects.get(id=templates_id)
-        serializer = TemplateSerializer(mailbox)
+    def get(self, request, *args, **kwargs):
         logger.info('Single mailbox loaded successfully')
-        return Response(serializer.data)
+        return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, templates_id):
-        mailbox = Template.objects.get(id=templates_id)
-        serializer = TemplateSerializer(mailbox, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            logger.info('POST successfully')
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        logger.info(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def put(self, request, *args, **kwargs):
+        logger.info('Updated successfully')
+        return self.update(request, *args, **kwargs)
 
-    def patch(self, request, templates_id):
-        mailbox = Template.objects.get(id=templates_id)
-        serializer = TemplateSerializer(mailbox, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            logger.info('PATCH successfully')
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        logger.info(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def patch(self, request, *args, **kwargs):
+        logger.info('Partial updated successfully')
+        return self.partial_update(request, *args, **kwargs)
 
-    def delete(self, request, templates_id):
-        mailbox = Mailbox.objects.get(id=templates_id)
-        mailbox.delete()
+    def delete(self, request, *args, **kwargs):
         logger.info('MAILBOX deleted')
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return self.delete(request, *args, **kwargs)
 
 
-class MailView(APIView):
+class MailView(ListCreateAPIView):
+    queryset = Email.objects.all()
+    serializer_class = EmailSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = EmailFilter
 
-    def get(self, request):
-        templates = Email.objects.all()
-        serializer = EmailSerializer(templates, many=True)
-        logger.info('List of templates load successfully')
-        return Response(serializer.data)
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
-    def post(self, request):
-        serializer = EmailSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            logger.info('POST successfully')
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        logger.info(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)

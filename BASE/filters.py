@@ -2,7 +2,7 @@ from django_filters import rest_framework as filters
 from .models import Email
 
 
-class MailboxFilter(filters.FilterSet):
+class EmailFilter(filters.FilterSet):
     class Meta:
         model = Email
-        fields = ['sent_date']
+        fields = ('sent_date', 'date')
